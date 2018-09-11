@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:js": "npx babel app/js -d dist/js --presets @babel/preset-env",
     "build:css": "npx node-sass --output-style compressed -o dist/css app/scss",
-    "build:html": "copyfiles -u 1 app/*.html dist",
+    "build:html": "copyfiles -u 1 \"./app/**/*.html\" dist",
     "watch:js": "onchange 'app/js/*.js' -- npm run build:js",
     "watch:css": "onchange 'app/scss/*.scss' -- npm run build:css",
     "watch:html": "onchange 'app/*.html' -- npm run build:html",
