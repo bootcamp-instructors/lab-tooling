@@ -5,14 +5,26 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:js": "babel app -d dist --presets @babel/preset-env"
+    "build:js": "npx babel app/js -d dist/js --presets @babel/preset-env",
+    "build:css": "npx node-sass --output-style compressed -o dist/css app/scss",
+    "build:html": "copyfiles -u 1 app/*.html dist",
+    "watch:js": "onchange 'app/js/*.js' -- npm run build:js",
+    "watch:css": "onchange 'app/scss/*.scss' -- npm run build:css",
+    "watch:html": "onchange 'app/*.html' -- npm run build:html",
+    "serve": "browser-sync start --server --files 'dist/*.html, dist/css/*.css, dist/js/*.js' --startPath './dist'",
+    "dev": "npm run build:css && npm run build:js && npm run build:html && concurrently --kill-others \"npm run serve\" \"npm run watch:css\" \"npm run watch:js\" \"npm run watch:html\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0"
+    "@babel/preset-env": "^7.0.0",
+    "browser-sync": "^2.24.7",
+    "concurrently": "^4.0.1",
+    "copyfiles": "^2.1.0",
+    "node-sass": "^4.9.3",
+    "onchange": "^4.1.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0"

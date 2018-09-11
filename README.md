@@ -2,6 +2,8 @@
 
 https://babeljs.io/docs/en/usage
 
+https://css-tricks.com/why-npm-scripts/
+
 ```
 1. $ npm init
 
@@ -32,5 +34,14 @@ To run: $ ./node_modules/.bin/babel app --out-dir dist
     "build:js": "babel app -d dist --presets @babel/preset-env"
 
 To run: $ npm run build:js
+
+5. Watch for file change and run scripts automatically:
+
+$ npm node install --save-dev node-sass
+$ node-sass --output-style compressed -o dist/css app/scss
+
+
+
+
 
 ```
